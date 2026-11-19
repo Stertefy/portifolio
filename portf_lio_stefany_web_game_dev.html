@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stefany — Desenvolvedora Web & Jogos | 18 anos</title>
+
+  <!-- Fonte Inter & Space Grotesk para títulos modernos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          },
+          colors: {
+            void: '#09090f',
+            surface: '#11111d',
+            surfaceLight: '#181829',
+            neonPurple: '#a855f7',
+            neonCyan: '#22d3ee',
+            neonPink: '#ec4899',
+          },
+          boxShadow: {
+            glowCyan: '0 0 28px rgba(34, 211, 238, 0.22)',
+            glowPurple: '0 0 32px rgba(168, 85, 247, 0.25)',
+            glowPink: '0 0 28px rgba(236, 72, 153, 0.22)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Estilo base e fundo gradeado sutil com iluminação ambiente */
+    body {
+      background-color: #09090f;
+      color: #f8fafc;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-display {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .grid-bg {
+      background-size: 44px 44px;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+
+    /* Gradiente de texto vibrante */
+    .text-neon-gradient {
+      background: linear-gradient(120deg, #22d3ee 0%, #a855f7 52%, #ec4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Borda gradiente sutil para cards em destaque */
+    .neon-card {
+      background: rgba(17, 17, 29, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .neon-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(168, 85, 247, 0.55);
+      box-shadow: 0 14px 36px -10px rgba(168, 85, 247, 0.25);
+    }
+
+    /* Animações suaves */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .animate-float {
+      animation: floatSlow 5.5s ease-in-out infinite;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Scrollbar discreta */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #09090f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27273f;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a855f7;
+    }
+  </style>
+</head>
+<body class="grid-bg selection:bg-neonPurple/30 selection:text-white">
+
+  <!-- Luzes decorativas de fundo -->
+  <div aria-hidden="true" class="pointer-events-none fixed inset-0 overflow-hidden z-0">
+    <div class="absolute -top-32 -left-24 w-80 h-80 sm:w-[28rem] sm:h-[28rem] rounded-full bg-neonPurple/15 blur-[120px]"></div>
+    <div class="absolute top-1/3 -right-28 w-72 h-72 sm:w-[26rem] sm:h-[26rem] rounded-full bg-neonCyan/15 blur-[120px]"></div>
+    <div class="absolute bottom-0 left-1/3 w-80 h-80 rounded-full bg-neonPink/10 blur-[130px]"></div>
+  </div>
+
+  <!-- Navegação Superior Fixa e Responsiva -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-void/80 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <!-- Marca / Logo -->
+      <a href="#topo" class="flex items-center gap-2.5 group focus:outline-none">
+        <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink p-[1.5px] shadow-glowPurple">
+          <span class="w-full h-full rounded-[11px] bg-void flex items-center justify-center font-display font-bold text-base text-white group-hover:text-neonCyan transition-colors">
+            S
+          </span>
+        </span>
+        <span class="font-display font-bold text-lg sm:text-xl tracking-tight text-white">
+          stefany<span class="text-neonCyan">.dev</span>
+        </span>
+      </a>
+
+      <!-- Links Desktop -->
+      <nav aria-label="Navegação principal" class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+        <a href="#perfil" class="hover:text-neonCyan transition-colors py-2">Perfil</a>
+        <a href="#sobre" class="hover:text-neonCyan transition-colors py-2">Sobre mim</a>
+        <a href="#projetos" class="hover:text-neonPurple transition-colors py-2">Projetos</a>
+        <a href="#habilidades" class="hover:text-neonPink transition-colors py-2">Habilidades</a>
+        <a href="#contato" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-neonPurple to-neonPink text-white font-semibold shadow-glowPink hover:opacity-95 transition">
+          Contato
+        </a>
+      </nav>
+
+      <!-- Botão Menu Mobile -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        aria-label="Abrir menu de navegação"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="md:hidden p-3 rounded-xl bg-surfaceLight border border-white/10 text-slate-200 hover:border-neonCyan/50 hover:text-neonCyan transition active:scale-95"
+      >
+        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Drawer / Menu Mobile -->
+    <div id="mobile-menu" class="md:hidden hidden border-t border-white/10 bg-surface/95 backdrop-blur-xl px-4 py-4 space-y-2">
+      <a href="#perfil" class="mobile-nav-link block w-full px-4 py-3.5 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-neonCyan transition">
+        Perfil
+      </a>
+      <a href="#sobre" class="mobile-nav-link block w-full px-4 py-3.5 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-neonCyan transition">
+        Sobre mim
+      </a>
+      <a href="#projetos" class="mobile-nav-link block w-full px-4 py-3.5 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-neonPurple transition">
+        Projetos
+      </a>
+      <a href="#habilidades" class="mobile-nav-link block w-full px-4 py-3.5 rounded-xl text-base font-medium text-slate-200 hover:bg-white/5 hover:text-neonPink transition">
+        Habilidades
+      </a>
+      <a href="#contato" class="mobile-nav-link block w-full px-4 py-3.5 rounded-xl text-base font-semibold text-center bg-gradient-to-r from-neonPurple to-neonPink text-white shadow-glowPink transition">
+        Contato
+      </a>
+    </div>
+  </header>
+
+  <main id="topo" class="relative z-10">
+
+    <!-- ==================== HERO / APRESENTAÇÃO ==================== -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16 sm:pt-20 sm:pb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+        <!-- Coluna de Texto Principal -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surfaceLight/90 border border-neonCyan/30 text-xs sm:text-sm font-medium text-neonCyan shadow-glowCyan">
+            <span class="w-2 h-2 rounded-full bg-neonCyan animate-pulse"></span>
+            18 anos • Sites, Jogos &amp; Programação
+          </div>
+
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.08]">
+            Oi, eu sou a <span class="text-neon-gradient">Stefany</span> — crio sites, jogos e soluções com código.
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Tenho <strong class="text-white font-semibold">18 anos</strong>, facilidade natural com <strong class="text-neonCyan font-semibold">tecnologia</strong> e paixão por <strong class="text-neonPurple font-semibold">programação</strong>. Já desenvolvi sites e jogos interativos e agora quero somar energia, lógica e criatividade em uma <strong class="text-neonPink font-semibold">empresa de tecnologia</strong>.
+          </p>
+
+          <!-- CTAs Responsivos -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-4 pt-2">
+            <a
+              href="#projetos"
+              class="px-7 py-4 rounded-2xl bg-gradient-to-r from-neonCyan to-neonPurple text-void font-semibold text-base shadow-glowCyan hover:opacity-95 active:scale-[0.99] transition text-center"
+            >
+              Ver meus projetos
+            </a>
+            <a
+              href="#contato"
+              class="px-7 py-4 rounded-2xl bg-surfaceLight border border-white/15 text-white font-semibold text-base hover:border-neonPink/60 hover:bg-surface active:scale-[0.99] transition text-center"
+            >
+              Falar comigo
+            </a>
+          </div>
+
+          <!-- Destaques rápidos -->
+          <div class="grid grid-cols-3 gap-3 sm:gap-5 pt-4 max-w-lg mx-auto lg:mx-0">
+            <div class="p-3.5 rounded-2xl bg-surface/80 border border-white/10 text-left">
+              <div class="font-display text-xl sm:text-2xl font-bold text-neonCyan">18</div>
+              <div class="text-xs sm:text-sm text-slate-400">anos & muita curiosidade</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface/80 border border-white/10 text-left">
+              <div class="font-display text-xl sm:text-2xl font-bold text-neonPurple">Web + Games</div>
+              <div class="text-xs sm:text-sm text-slate-400">projetos criados do zero</div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface/80 border border-white/10 text-left">
+              <div class="font-display text-xl sm:text-2xl font-bold text-neonPink">100%</div>
+              <div class="text-xs sm:text-sm text-slate-400">foco em evoluir em tech</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna Visual Interativa (Cartão de Código / Perfil Dev) -->
+        <div class="lg:col-span-5 animate-float">
+          <div class="relative rounded-3xl bg-gradient-to-br from-neonCyan/30 via-neonPurple/30 to-neonPink/30 p-[1.5px] shadow-glowPurple">
+            <div class="rounded-[23px] bg-surface p-5 sm:p-6 space-y-5">
+              <!-- Barra superior estilo janela -->
+              <div class="flex items-center justify-between border-b border-white/10 pb-3.5">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-neonPink/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-amber-400/80"></span>
+                  <span class="w-3 h-3 rounded-full bg-neonCyan/80"></span>
+                </div>
+                <span class="text-xs font-mono text-slate-400">stefany_perfil.js</span>
+              </div>
+
+              <!-- Snippet ilustrativo da Stefany -->
+              <pre class="text-xs sm:text-sm font-mono leading-relaxed text-slate-300 overflow-x-auto"><code><span class="text-neonPink">const</span> <span class="text-neonCyan">stefany</span> = {
+  <span class="text-neonPurple">idade</span>: <span class="text-amber-300">18</span>,
+  <span class="text-neonPurple">curteCriar</span>: [<span class="text-emerald-300">"Sites"</span>, <span class="text-emerald-300">"Jogos"</span>, <span class="text-emerald-300">"Interfaces"</span>],
+  <span class="text-neonPurple">logica</span>: <span class="text-emerald-300">"Resolver problemas com calma"</span>,
+  <span class="text-neonPurple">aprendizado</span>: <span class="text-emerald-300">"Rápido e mão na massa"</span>,
+  <span class="text-neonPurple">objetivo</span>: <span class="text-neonCyan">"Primeira vaga em empresa de tech"</span>
+};</code></pre>
+
+              <!-- Mini card de status -->
+              <div class="p-4 rounded-2xl bg-void/90 border border-white/10 flex items-center justify-between gap-3">
+                <div>
+                  <p class="text-xs uppercase tracking-wider text-neonCyan font-semibold">Próximo passo</p>
+                  <p class="text-sm font-medium text-white mt-0.5">Estágio ou Dev Júnior em equipe tech</p>
+                </div>
+                <span class="px-3 py-1.5 rounded-xl bg-neonPurple/20 border border-neonPurple/40 text-neonPurple text-xs font-semibold shrink-0">
+                  Bora codar!
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== PERFIL COMPLETO DA STEFANY ==================== -->
+    <section id="perfil" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 reveal">
+      <div class="neon-card rounded-3xl p-6 sm:p-10 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+
+          <!-- Coluna Esquerda: Retrato Artístico SVG/Canvas + Upload de Foto -->
+          <div class="lg:col-span-5 flex flex-col items-center text-center">
+            <div class="relative w-52 h-52 sm:w-60 sm:h-60 rounded-3xl bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink p-[2px] shadow-glowPurple">
+              <div class="relative w-full h-full rounded-[22px] bg-void overflow-hidden flex items-center justify-center">
+                <!-- Retrato artístico gerado via Canvas tech-neon -->
+                <canvas
+                  id="avatar-canvas"
+                  width="320"
+                  height="320"
+                  aria-label="Retrato artístico estilizado de Stefany em estilo tech-neon"
+                  class="w-full h-full object-cover"
+                ></canvas>
+
+                <!-- Foto enviada pelo usuário com pré-visualização instantânea -->
+                <img
+                  id="custom-avatar-img"
+                  alt="Foto de perfil de Stefany"
+                  class="hidden w-full h-full object-cover"
+                />
+
+                <!-- Moldura SVG sutil com cantos tecnológicos -->
+                <svg aria-hidden="true" class="pointer-events-none absolute inset-0 w-full h-full" viewBox="0 0 240 240" fill="none">
+                  <path d="M14 34V14H34" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M206 14H226V34" stroke="#a855f7" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M14 206V226H34" stroke="#ec4899" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M206 226H226V206" stroke="#22d3ee" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+
+            <!-- Badge de Status logo abaixo do retrato -->
+            <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-400/35 text-emerald-300 text-xs sm:text-sm font-semibold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Disponível para oportunidades tech
+            </div>
+
+            <!-- Controles de envio de foto e restauração do avatar padrão -->
+            <div class="mt-5 flex flex-wrap items-center justify-center gap-3 w-full max-w-xs">
+              <label
+                for="avatar-upload-input"
+                class="flex-1 min-w-[140px] px-4 py-3 rounded-xl bg-surfaceLight border border-neonCyan/40 text-neonCyan hover:bg-neonCyan/10 text-xs sm:text-sm font-semibold text-center cursor-pointer transition active:scale-[0.98]"
+              >
+                Enviar foto
+              </label>
+              <input
+                id="avatar-upload-input"
+                type="file"
+                accept="image/*"
+                class="sr-only"
+              />
+
+              <button
+                id="reset-avatar-btn"
+                type="button"
+                class="px-4 py-3 rounded-xl bg-void border border-white/15 text-slate-300 hover:text-white hover:border-neonPink/50 text-xs sm:text-sm font-semibold transition cursor-pointer active:scale-[0.98]"
+              >
+                Restaurar padrão
+              </button>
+            </div>
+            <p id="avatar-status-msg" role="status" aria-live="polite" class="mt-2.5 text-xs text-slate-400">
+              Retrato tech-neon ativo. Você pode enviar uma foto do seu aparelho quando quiser.
+            </p>
+          </div>
+
+          <!-- Coluna Direita: Informações Claras, Bio e Destaques Rápidos -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="space-y-2 text-center lg:text-left">
+              <span class="inline-block text-xs sm:text-sm font-semibold uppercase tracking-widest text-neonCyan">
+                Perfil profissional
+              </span>
+              <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+                Stefany
+              </h2>
+              <p class="text-sm sm:text-base font-medium text-neonPurple">
+                18 anos • Vaga em empresa de tecnologia / Desenvolvedora Web &amp; Jogos
+              </p>
+            </div>
+
+            <!-- Grade de informações objetivas -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+              <div class="p-4 rounded-2xl bg-void/80 border border-white/10">
+                <span class="block text-xs uppercase tracking-wider text-slate-400">Nome</span>
+                <span class="font-display font-bold text-base sm:text-lg text-white mt-0.5 block">Stefany</span>
+              </div>
+              <div class="p-4 rounded-2xl bg-void/80 border border-white/10">
+                <span class="block text-xs uppercase tracking-wider text-slate-400">Idade</span>
+                <span class="font-display font-bold text-base sm:text-lg text-neonCyan mt-0.5 block">18 anos</span>
+              </div>
+              <div class="p-4 rounded-2xl bg-void/80 border border-white/10">
+                <span class="block text-xs uppercase tracking-wider text-slate-400">Foco atual</span>
+                <span class="font-semibold text-sm sm:text-base text-neonPink mt-0.5 block leading-snug">Vaga em empresa de tecnologia</span>
+              </div>
+            </div>
+
+            <!-- Bio resumida -->
+            <div class="p-5 rounded-2xl bg-void/65 border border-white/10 space-y-2">
+              <h3 class="font-display text-sm uppercase tracking-wider text-slate-300 font-bold">Bio resumida</h3>
+              <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+                Sou a Stefany, tenho 18 anos e muita facilidade com tecnologia e programação. Já criei sites responsivos e jogos interativos colocando a mão na massa, unindo lógica, criatividade e atenção aos detalhes. Busco uma oportunidade em uma empresa de tecnologia onde eu possa contribuir com dedicação e crescer junto com o time.
+              </p>
+            </div>
+
+            <!-- Destaques rápidos solicitados -->
+            <div>
+              <h3 class="font-display text-sm uppercase tracking-wider text-slate-300 font-bold mb-3 text-center lg:text-left">
+                Destaques rápidos
+              </h3>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surfaceLight/80 border border-neonCyan/25">
+                  <span class="w-8 h-8 rounded-xl bg-neonCyan/15 text-neonCyan flex items-center justify-center font-mono text-xs font-bold shrink-0">01</span>
+                  <span class="text-sm font-medium text-white">Criação de sites</span>
+                </div>
+                <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surfaceLight/80 border border-neonPurple/25">
+                  <span class="w-8 h-8 rounded-xl bg-neonPurple/15 text-neonPurple flex items-center justify-center font-mono text-xs font-bold shrink-0">02</span>
+                  <span class="text-sm font-medium text-white">Desenvolvimento de jogos</span>
+                </div>
+                <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surfaceLight/80 border border-neonPink/25">
+                  <span class="w-8 h-8 rounded-xl bg-neonPink/15 text-neonPink flex items-center justify-center font-mono text-xs font-bold shrink-0">03</span>
+                  <span class="text-sm font-medium text-white">Lógica de programação</span>
+                </div>
+                <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-surfaceLight/80 border border-emerald-400/25">
+                  <span class="w-8 h-8 rounded-xl bg-emerald-400/15 text-emerald-300 flex items-center justify-center font-mono text-xs font-bold shrink-0">04</span>
+                  <span class="text-sm font-medium text-white">Testes e usabilidade em telas touch/mobile</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SOBRE MIM ==================== -->
+    <section id="sobre" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 reveal">
+      <div class="neon-card rounded-3xl p-6 sm:p-10 md:p-12">
+        <div class="max-w-3xl space-y-4 mb-10">
+          <span class="inline-block text-xs sm:text-sm font-semibold uppercase tracking-widest text-neonPurple">
+            Sobre mim
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+            Tecnologia sempre fez sentido para mim — e programar virou minha forma favorita de construir.
+          </h2>
+          <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+            Desde cedo eu sempre fui a pessoa que explorava ferramentas, entendia como as coisas funcionavam por trás da tela e não tinha medo de testar até dar certo. Quando comecei a programar, percebi que juntar <strong class="text-white">lógica</strong> com <strong class="text-white">criatividade</strong> permite tirar ideias do papel e transformar em algo real que outras pessoas podem usar ou jogar.
+          </p>
+        </div>
+
+        <!-- 3 Pilares da Stefany -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+          <div class="p-6 rounded-2xl bg-void/70 border border-white/10 hover:border-neonCyan/40 transition">
+            <div class="w-12 h-12 rounded-2xl bg-neonCyan/15 border border-neonCyan/30 flex items-center justify-center text-neonCyan mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-2">Facilidade com tecnologia</h3>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Adapto-me rápido a novas ferramentas, interfaces e fluxos de trabalho. Gosto de entender o "porquê" das coisas em vez de só decorar comandos.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-void/70 border border-white/10 hover:border-neonPurple/40 transition">
+            <div class="w-12 h-12 rounded-2xl bg-neonPurple/15 border border-neonPurple/30 flex items-center justify-center text-neonPurple mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-2">Lógica e resolução de bugs</h3>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Criar jogos e aplicações web exige pensar em estados, condições, colisões e experiência do usuário. Encaro cada bug como um quebra-cabeça a ser resolvido.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-void/70 border border-white/10 hover:border-neonPink/40 transition">
+            <div class="w-12 h-12 rounded-2xl bg-neonPink/15 border border-neonPink/30 flex items-center justify-center text-neonPink mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-2">Projetos criados do zero</h3>
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+              Tenho prática em pegar uma ideia inicial, planejar a estrutura, codar a interface e a interatividade, testar e refinar até ficar fluido e apresentável.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJETOS (SITES & JOGOS) ==================== -->
+    <section id="projetos" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 reveal">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div class="space-y-2">
+          <span class="inline-block text-xs sm:text-sm font-semibold uppercase tracking-widest text-neonCyan">
+            Portfólio prático
+          </span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+            Sites e jogos que eu já criei
+          </h2>
+          <p class="text-slate-300 text-base max-w-xl">
+            Filtre por categoria ou clique em qualquer projeto para ver mais detalhes sobre a lógica, tecnologias e desafios.
+          </p>
+        </div>
+
+        <!-- Botões de Filtro -->
+        <div role="group" aria-label="Filtrar projetos" class="inline-flex p-1.5 rounded-2xl bg-surface border border-white/10 self-start md:self-auto">
+          <button
+            type="button"
+            data-filter="todos"
+            class="filter-btn px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-neonCyan to-neonPurple text-void transition cursor-pointer"
+          >
+            Todos
+          </button>
+          <button
+            type="button"
+            data-filter="site"
+            class="filter-btn px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-300 hover:text-white transition cursor-pointer"
+          >
+            Sites
+          </button>
+          <button
+            type="button"
+            data-filter="jogo"
+            class="filter-btn px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-300 hover:text-white transition cursor-pointer"
+          >
+            Jogos
+          </button>
+        </div>
+      </div>
+
+      <!-- Grade de Projetos (populada dinamicamente via JS para facilitar filtro e modal) -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+    <!-- ==================== HABILIDADES TÉCNICAS ==================== -->
+    <section id="habilidades" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 reveal">
+      <div class="space-y-2 mb-10 text-center md:text-left">
+        <span class="inline-block text-xs sm:text-sm font-semibold uppercase tracking-widest text-neonPink">
+          Stack & competências
+        </span>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">
+          Habilidades técnicas
+        </h2>
+        <p class="text-slate-300 text-base max-w-2xl">
+          Base sólida em lógica, desenvolvimento web e interatividade de jogos, com facilidade para aprender novas linguagens e frameworks no dia a dia de uma equipe.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Categoria 1 -->
+        <div class="neon-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neonCyan/15 text-neonCyan border border-neonCyan/30">
+                01 • Base forte
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-3">Lógica e Programação</h3>
+            <p class="text-sm text-slate-300 mb-5 leading-relaxed">
+              Estruturas condicionais, loops, arrays, funções, depuração e pensamento algorítmico para resolver problemas.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">Lógica de Prog.</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">JavaScript</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">Python</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">POO</span>
+          </div>
+        </div>
+
+        <!-- Categoria 2 -->
+        <div class="neon-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neonPurple/15 text-neonPurple border border-neonPurple/30">
+                02 • Front-end
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-3">Desenvolvimento Web</h3>
+            <p class="text-sm text-slate-300 mb-5 leading-relaxed">
+              Criação de páginas modernas, responsivas e dinâmicas, cuidando de layout, usabilidade e animações suaves.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">HTML5</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">CSS3 / Tailwind</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">DOM & Eventos</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">Responsividade</span>
+          </div>
+        </div>
+
+        <!-- Categoria 3 -->
+        <div class="neon-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-neonPink/15 text-neonPink border border-neonPink/30">
+                03 • Criatividade
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-3">Game Dev & Interatividade</h3>
+            <p class="text-sm text-slate-300 mb-5 leading-relaxed">
+              Game loops, controles por teclado e toque, pontuação, fases, colisões e feedback visual que prende o jogador.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">HTML5 Canvas</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">Game Loop</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">Mecânicas 2D</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">UI de Jogos</span>
+          </div>
+        </div>
+
+        <!-- Categoria 4 -->
+        <div class="neon-card rounded-3xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-400/15 text-emerald-300 border border-emerald-400/30">
+                04 • Produtividade
+              </span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-3">Ferramentas & Tecnologia</h3>
+            <p class="text-sm text-slate-300 mb-5 leading-relaxed">
+              Organização de código, versionamento, inspeção no navegador e facilidade para aprender novas stacks.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">Git & GitHub</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">VS Code</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">DevTools</span>
+            <span class="px-3 py-1.5 rounded-xl text-xs font-medium bg-void border border-white/10 text-slate-200">IA no workflow</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTATO & OPORTUNIDADES ==================== -->
+    <section id="contato" class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-24 reveal">
+      <div class="neon-card rounded-3xl p-6 sm:p-10 md:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+          <!-- Coluna de Oportunidades & Links Rápidos -->
+          <div class="lg:col-span-5 space-y-6">
+            <span class="inline-block text-xs sm:text-sm font-semibold uppercase tracking-widest text-neonCyan">
+              Oportunidades
+            </span>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white leading-tight">
+              Buscando minha primeira oportunidade em tecnologia
+            </h2>
+            <p class="text-slate-300 text-base leading-relaxed">
+              Estou aberta a vagas de <strong class="text-white">Desenvolvedora Júnior</strong>, <strong class="text-white">Estágio em Desenvolvimento / Web / Games</strong> ou programas de formação tech. Se você ou sua empresa valorizam curiosidade, lógica e vontade real de construir, vamos conversar!
+            </p>
+
+            <!-- Links Rápidos -->
+            <div class="space-y-3 pt-2">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between p-4 rounded-2xl bg-void/80 border border-white/10 hover:border-neonCyan/50 transition group"
+              >
+                <div class="flex items-center gap-3.5">
+                  <span class="w-10 h-10 rounded-xl bg-neonCyan/15 text-neonCyan flex items-center justify-center font-mono font-bold text-sm">
+                    GH
+                  </span>
+                  <div>
+                    <div class="font-semibold text-white group-hover:text-neonCyan transition">GitHub</div>
+                    <div class="text-xs text-slate-400">Meus repositórios de sites e jogos</div>
+                  </div>
+                </div>
+                <span class="text-slate-400 group-hover:text-neonCyan group-hover:translate-x-1 transition">→</span>
+              </a>
+
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-between p-4 rounded-2xl bg-void/80 border border-white/10 hover:border-neonPurple/50 transition group"
+              >
+                <div class="flex items-center gap-3.5">
+                  <span class="w-10 h-10 rounded-xl bg-neonPurple/15 text-neonPurple flex items-center justify-center font-mono font-bold text-sm">
+                    IN
+                  </span>
+                  <div>
+                    <div class="font-semibold text-white group-hover:text-neonPurple transition">LinkedIn</div>
+                    <div class="text-xs text-slate-400">Conexões, carreira e novidades</div>
+                  </div>
+                </div>
+                <span class="text-slate-400 group-hover:text-neonPurple group-hover:translate-x-1 transition">→</span>
+              </a>
+
+              <!-- E-mail com botão de copiar -->
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-void/80 border border-white/10 gap-3">
+                <div class="flex items-center gap-3.5 min-w-0">
+                  <span class="w-10 h-10 rounded-xl bg-neonPink/15 text-neonPink flex items-center justify-center font-mono font-bold text-sm shrink-0">
+                    @
+                  </span>
+                  <div class="min-w-0">
+                    <div class="font-semibold text-white">E-mail</div>
+                    <div id="email-text" class="text-xs sm:text-sm text-slate-300 truncate">stefany.dev.contato@email.com</div>
+                  </div>
+                </div>
+                <button
+                  id="copy-email-btn"
+                  type="button"
+                  class="px-3.5 py-2 rounded-xl bg-surfaceLight border border-white/15 text-xs font-semibold text-neonPink hover:border-neonPink/60 transition shrink-0 cursor-pointer"
+                >
+                  Copiar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulário Funcional de Mensagem -->
+          <div class="lg:col-span-7">
+            <form id="contact-form" novalidate class="p-6 sm:p-8 rounded-3xl bg-void/85 border border-white/10 space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="nome" class="block text-sm font-medium text-slate-200 mb-2">Seu nome</label>
+                  <input
+                    id="nome"
+                    name="nome"
+                    type="text"
+                    placeholder="Ex: Lucas Almeida"
+                    required
+                    class="w-full px-4 py-3.5 rounded-xl bg-surface border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-neonCyan transition text-base"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-slate-200 mb-2">Seu e-mail</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="voce@empresa.com"
+                    required
+                    class="w-full px-4 py-3.5 rounded-xl bg-surface border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-neonCyan transition text-base"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="assunto" class="block text-sm font-medium text-slate-200 mb-2">Tipo de contato</label>
+                <select
+                  id="assunto"
+                  name="assunto"
+                  class="w-full px-4 py-3.5 rounded-xl bg-surface border border-white/15 text-white focus:outline-none focus:border-neonPurple transition text-base"
+                >
+                  <option value="Vaga / Estágio em Tecnologia">Vaga / Estágio em Tecnologia</option>
+                  <option value="Projeto Web ou Jogo">Projeto Web ou Jogo</option>
+                  <option value="Networking / Mentoria">Networking / Mentoria</option>
+                  <option value="Outro assunto">Outro assunto</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="mensagem" class="block text-sm font-medium text-slate-200 mb-2">Mensagem</label>
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  rows="4"
+                  placeholder="Conta pra mim sobre a vaga, o time ou o projeto que você tem em mente..."
+                  required
+                  class="w-full px-4 py-3.5 rounded-xl bg-surface border border-white/15 text-white placeholder-slate-500 focus:outline-none focus:border-neonPink transition text-base resize-y"
+                ></textarea>
+              </div>
+
+              <!-- Feedback visual do formulário -->
+              <div id="form-feedback" role="status" aria-live="polite" class="hidden rounded-2xl p-4 text-sm font-medium"></div>
+
+              <button
+                type="submit"
+                class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-neonCyan via-neonPurple to-neonPink text-white font-semibold text-base shadow-glowPurple hover:opacity-95 active:scale-[0.99] transition cursor-pointer"
+              >
+                Enviar mensagem
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="relative z-10 border-t border-white/10 bg-void/90 py-8 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <p class="text-sm text-slate-400">
+        Feito por <span class="text-white font-semibold">Stefany</span> • 18 anos • Desenvolvedora Web & Jogos.
+      </p>
+      <div class="flex items-center gap-5 text-sm text-slate-400">
+        <a href="#sobre" class="hover:text-neonCyan transition">Sobre</a>
+        <a href="#projetos" class="hover:text-neonPurple transition">Projetos</a>
+        <a href="#contato" class="hover:text-neonPink transition">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL DE DETALHES DO PROJETO ==================== -->
+  <div
+    id="project-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md"
+  >
+    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-surface border border-white/15 p-6 sm:p-8 shadow-2xl">
+      <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-4 mb-5">
+        <div>
+          <span id="modal-category" class="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2"></span>
+          <h3 id="modal-title" class="font-display text-2xl sm:text-3xl font-bold text-white"></h3>
+        </div>
+        <button
+          id="close-modal-btn"
+          type="button"
+          aria-label="Fechar detalhes do projeto"
+          class="p-2.5 rounded-xl bg-surfaceLight border border-white/10 text-slate-300 hover:text-white hover:border-neonPink/50 transition shrink-0 cursor-pointer"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Banner ilustrativo no modal -->
+      <div id="modal-banner" class="h-40 sm:h-48 rounded-2xl p-5 mb-6 flex flex-col justify-end border border-white/10">
+        <p id="modal-tagline" class="text-sm sm:text-base font-medium text-white/95"></p>
+      </div>
+
+      <div class="space-y-5 text-slate-300 text-sm sm:text-base leading-relaxed">
+        <div>
+          <h4 class="font-display font-bold text-white text-base mb-1">Sobre o projeto</h4>
+          <p id="modal-description"></p>
+        </div>
+
+        <div>
+          <h4 class="font-display font-bold text-white text-base mb-1">Lógica & desafio resolvido</h4>
+          <p id="modal-challenge"></p>
+        </div>
+
+        <div>
+          <h4 class="font-display font-bold text-white text-base mb-2">Tecnologias usadas</h4>
+          <div id="modal-techs" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <div class="mt-7 pt-5 border-t border-white/10 flex flex-col sm:flex-row items-center justify-end gap-3">
+        <button
+          id="modal-secondary-close"
+          type="button"
+          class="w-full sm:w-auto px-5 py-3 rounded-xl bg-surfaceLight border border-white/15 text-slate-200 font-semibold text-sm hover:bg-white/10 transition cursor-pointer"
+        >
+          Voltar ao portfólio
+        </button>
+        <a
+          href="#contato"
+          id="modal-contact-cta"
+          class="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-neonCyan to-neonPurple text-void font-semibold text-sm text-center hover:opacity-95 transition"
+        >
+          Falar sobre este projeto
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    /**
+     * Dados dos projetos criados pela Stefany (Sites e Jogos).
+     * Centralizados aqui para renderizar os cards, aplicar filtros e abrir o modal de detalhes.
+     */
+    const PROJECTS = [
+      {
+        id: 'neon-dash-2d',
+        type: 'jogo',
+        categoryLabel: 'Jogo 2D • Arcade',
+        title: 'Neon Dash Runner',
+        tagline: 'Jogo de reflexo e velocidade com aumento progressivo de dificuldade e placar.',
+        summary: 'Jogo de corrida lateral onde o jogador desvia de obstáculos, coleta núcleos de energia e bate recordes.',
+        description: 'Desenvolvi este jogo do zero focando em resposta rápida dos controles, física simples de pulo e sensação de progressão. Conforme a pontuação sobe, o ritmo exige mais atenção do jogador.',
+        challenge: 'Ajustar a curva de dificuldade e a detecção de colisão para que o jogo parecesse justo e divertido tanto no teclado quanto em telas sensíveis ao toque.',
+        techs: ['HTML5 Canvas', 'JavaScript', 'Game Loop', 'CSS3'],
+        accentClass: 'from-neonPurple/35 via-neonPink/25 to-void',
+        badgeClass: 'bg-neonPink/15 text-neonPink border border-neonPink/30',
+        iconSvg: `<svg class="w-7 h-7 text-neonPink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
+      },
+      {
+        id: 'study-hub-web',
+        type: 'site',
+        categoryLabel: 'Site Web • Produtividade',
+        title: 'StudyFlow Hub',
+        tagline: 'Plataforma web limpa para organizar metas, tarefas e sessões de foco.',
+        summary: 'Aplicação web responsiva com listas interativas, filtros de status e salvamento local no navegador.',
+        description: 'Criei um site pensado para facilitar a rotina de estudos e projetos pessoais, com interface clara, modo escuro confortável e ações rápidas sem complicação.',
+        challenge: 'Manter o estado das tarefas sincronizado na interface e persistido no localStorage sem perder clareza visual em telas pequenas.',
+        techs: ['HTML5', 'Tailwind CSS', 'JavaScript', 'LocalStorage'],
+        accentClass: 'from-neonCyan/35 via-neonPurple/25 to-void',
+        badgeClass: 'bg-neonCyan/15 text-neonCyan border border-neonCyan/30',
+        iconSvg: `<svg class="w-7 h-7 text-neonCyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`
+      },
+      {
+        id: 'cipher-quest-puzzle',
+        type: 'jogo',
+        categoryLabel: 'Jogo de Lógica • Puzzle',
+        title: 'Cipher & Sequence',
+        tagline: 'Mini-jogo de padrões lógicos e raciocínio rápido com níveis crescentes.',
+        summary: 'Desafio interativo baseado em sequências, memória e lógica dedutiva com feedback imediato.',
+        description: 'Um jogo focado em lógica pura: o jogador observa padrões ou sequências e precisa descobrir o próximo passo dentro de um ritmo envolvente.',
+        challenge: 'Gerar desafios variados e validar as respostas do jogador com clareza, evitando estados travados entre uma rodada e outra.',
+        techs: ['Lógica de Programação', 'JavaScript', 'HTML5', 'UI Interativa'],
+        accentClass: 'from-neonPurple/35 via-neonCyan/20 to-void',
+        badgeClass: 'bg-neonPurple/15 text-neonPurple border border-neonPurple/30',
+        iconSvg: `<svg class="w-7 h-7 text-neonPurple" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg>`
+      },
+      {
+        id: 'indie-showcase-site',
+        type: 'site',
+        categoryLabel: 'Site Web • Landing & Catálogo',
+        title: 'Pulse Indie Showcase',
+        tagline: 'Site vitrine vibrante para apresentar criadores, trailers e novidades interativas.',
+        summary: 'Landing page responsiva com navegação fluida, cards filtráveis e foco em identidade visual.',
+        description: 'Desenvolvi este site explorando contraste escuro, tipografia marcante e hierarquia visual para destacar conteúdos sem sobrecarregar a leitura.',
+        challenge: 'Garantir que todos os blocos, botões e textos continuassem bem espaçados e fáceis de tocar no celular.',
+        techs: ['HTML5', 'CSS3', 'JavaScript', 'Design Responsivo'],
+        accentClass: 'from-neonPink/35 via-neonPurple/25 to-void',
+        badgeClass: 'bg-neonPink/15 text-neonPink border border-neonPink/30',
+        iconSvg: `<svg class="w-7 h-7 text-neonPink" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>`
+      },
+      {
+        id: 'orbit-dodge-game',
+        type: 'jogo',
+        categoryLabel: 'Jogo Web • Ação & Precisão',
+        title: 'Orbit Dodge',
+        tagline: 'Jogo de precisão onde o jogador controla movimento e timing para sobreviver.',
+        summary: 'Experiência interativa focada em agilidade, contagem de tempo/pontos e reinício instantâneo.',
+        description: 'Criei este projeto para praticar animação contínua com requestAnimationFrame, controle de entidades na tela e telas de início/fim de jogo bem definidas.',
+        challenge: 'Manter a taxa de atualização suave e prever reinícios limpos de variáveis sem deixar resíduos da partida anterior.',
+        techs: ['JavaScript', 'HTML5 Canvas', 'Animação 2D', 'Lógica'],
+        accentClass: 'from-neonCyan/30 via-neonPink/25 to-void',
+        badgeClass: 'bg-neonCyan/15 text-neonCyan border border-neonCyan/30',
+        iconSvg: `<svg class="w-7 h-7 text-neonCyan" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`
+      },
+      {
+        id: 'tech-faq-portal',
+        type: 'site',
+        categoryLabel: 'Site Web • Interativo',
+        title: 'DevGuia Interativo',
+        tagline: 'Portal de consulta rápida com busca instantânea e seções expansíveis.',
+        summary: 'Site informativo com filtro em tempo real e estrutura organizada para quem está começando em tecnologia.',
+        description: 'Construí este site pensando em clareza e rapidez: o usuário digita um termo e encontra respostas organizadas de forma direta.',
+        challenge: 'Estruturar o conteúdo de forma modular para adicionar novos tópicos facilmente sem duplicar código HTML.',
+        techs: ['HTML5', 'Tailwind CSS', 'JavaScript', 'Acessibilidade'],
+        accentClass: 'from-neonPurple/35 via-neonPink/20 to-void',
+        badgeClass: 'bg-neonPurple/15 text-neonPurple border border-neonPurple/30',
+        iconSvg: `<svg class="w-7 h-7 text-neonPurple" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`
+      }
+    ];
+
+    /**
+     * Renderiza os cards de projetos de acordo com o filtro selecionado ('todos', 'site' ou 'jogo').
+     */
+    function renderProjects(filter = 'todos') {
+      const grid = document.getElementById('projects-grid');
+      if (!grid) return;
+
+      const filtered = filter === 'todos'
+        ? PROJECTS
+        : PROJECTS.filter((project) => project.type === filter);
+
+      grid.innerHTML = filtered.map((project) => {
+        const typeBadge = project.type === 'jogo'
+          ? `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-neonPink/15 text-neonPink border border-neonPink/30">Jogo</span>`
+          : `<span class="px-3 py-1 rounded-full text-xs font-semibold bg-neonCyan/15 text-neonCyan border border-neonCyan/30">Site</span>`;
+
+        const techChips = project.techs.slice(0, 3).map((tech) =>
+          `<span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-void border border-white/10 text-slate-300">${tech}</span>`
+        ).join('');
+
+        return `
+          <article
+            data-project-id="${project.id}"
+            tabindex="0"
+            role="button"
+            aria-label="Ver detalhes do projeto ${project.title}"
+            class="project-card neon-card rounded-3xl p-6 flex flex-col justify-between cursor-pointer focus:outline-none focus:border-neonCyan"
+          >
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-5">
+                <div class="w-12 h-12 rounded-2xl bg-void border border-white/10 flex items-center justify-center">
+                  ${project.iconSvg}
+                </div>
+                ${typeBadge}
+              </div>
+
+              <h3 class="font-display text-xl font-bold text-white mb-2">${project.title}</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-5">${project.summary}</p>
+            </div>
+
+            <div>
+              <div class="flex flex-wrap gap-1.5 mb-5">
+                ${techChips}
+              </div>
+              <div class="flex items-center justify-between text-sm font-semibold text-neonCyan pt-3 border-t border-white/10">
+                <span>Ver detalhes</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+
+      // Liga eventos de clique e teclado (Enter/Space) em cada card
+      grid.querySelectorAll('.project-card').forEach((card) => {
+        const openHandler = () => {
+          const id = card.getAttribute('data-project-id');
+          openProjectModal(id);
+        };
+        card.addEventListener('click', openHandler);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openHandler();
+          }
+        });
+      });
+    }
+
+    /**
+     * Configura os botões de filtro de projetos.
+     */
+    function setupFilters() {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const selectedFilter = btn.getAttribute('data-filter') || 'todos';
+
+          // Atualiza estilo ativo
+          buttons.forEach((b) => {
+            b.className = 'filter-btn px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-300 hover:text-white transition cursor-pointer';
+          });
+          btn.className = 'filter-btn px-4 sm:px-5 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-neonCyan to-neonPurple text-void transition cursor-pointer';
+
+          renderProjects(selectedFilter);
+        });
+      });
+    }
+
+    /**
+     * Controle do modal de detalhes do projeto.
+     */
+    const modal = document.getElementById('project-modal');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const secondaryCloseBtn = document.getElementById('modal-secondary-close');
+    const modalContactCta = document.getElementById('modal-contact-cta');
+
+    function openProjectModal(projectId) {
+      const project = PROJECTS.find((p) => p.id === projectId);
+      if (!project || !modal) return;
+
+      document.getElementById('modal-title').textContent = project.title;
+      document.getElementById('modal-tagline').textContent = project.tagline;
+      document.getElementById('modal-description').textContent = project.description;
+      document.getElementById('modal-challenge').textContent = project.challenge;
+
+      const catBadge = document.getElementById('modal-category');
+      catBadge.textContent = project.categoryLabel;
+      catBadge.className = `inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 ${project.badgeClass}`;
+
+      const banner = document.getElementById('modal-banner');
+      banner.className = `h-40 sm:h-48 rounded-2xl p-5 mb-6 flex flex-col justify-end border border-white/10 bg-gradient-to-br ${project.accentClass}`;
+
+      const techsContainer = document.getElementById('modal-techs');
+      techsContainer.innerHTML = project.techs.map((tech) =>
+        `<span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-void border border-white/15 text-slate-100">${tech}</span>`
+      ).join('');
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      closeModalBtn?.focus();
+    }
+
+    function closeProjectModal() {
+      if (!modal) return;
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    closeModalBtn?.addEventListener('click', closeProjectModal);
+    secondaryCloseBtn?.addEventListener('click', closeProjectModal);
+    modalContactCta?.addEventListener('click', closeProjectModal);
+
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeProjectModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+        closeProjectModal();
+      }
+    });
+
+    /**
+     * Menu mobile responsivo.
+     */
+    function setupMobileMenu() {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+
+      if (!btn || !menu) return;
+
+      const toggleMenu = (forceClose = false) => {
+        const isCurrentlyOpen = !menu.classList.contains('hidden');
+        const nextOpen = forceClose ? false : !isCurrentlyOpen;
+
+        menu.classList.toggle('hidden', !nextOpen);
+        btn.setAttribute('aria-expanded', String(nextOpen));
+        iconOpen?.classList.toggle('hidden', nextOpen);
+        iconClose?.classList.toggle('hidden', !nextOpen);
+      };
+
+      btn.addEventListener('click', () => toggleMenu());
+
+      menu.querySelectorAll('.mobile-nav-link').forEach((link) => {
+        link.addEventListener('click', () => toggleMenu(true));
+      });
+    }
+
+    /**
+     * Copiar e-mail com fallback compatível com iframes.
+     */
+    function setupCopyEmail() {
+      const copyBtn = document.getElementById('copy-email-btn');
+      const emailEl = document.getElementById('email-text');
+      if (!copyBtn || !emailEl) return;
+
+      copyBtn.addEventListener('click', () => {
+        const emailValue = emailEl.textContent.trim();
+        const tempInput = document.createElement('input');
+        tempInput.value = emailValue;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+
+        try {
+          document.execCommand('copy');
+          copyBtn.textContent = 'Copiado!';
+          copyBtn.classList.add('border-neonCyan', 'text-neonCyan');
+        } catch (err) {
+          copyBtn.textContent = 'Erro';
+        } finally {
+          document.body.removeChild(tempInput);
+        }
+
+        setTimeout(() => {
+          copyBtn.textContent = 'Copiar';
+          copyBtn.classList.remove('border-neonCyan', 'text-neonCyan');
+        }, 2000);
+      });
+    }
+
+    /**
+     * Validação e envio interativo do formulário de contato.
+     */
+    function setupContactForm() {
+      const form = document.getElementById('contact-form');
+      const feedback = document.getElementById('form-feedback');
+      if (!form || !feedback) return;
+
+      const showFeedback = (message, isError = false) => {
+        feedback.textContent = message;
+        feedback.classList.remove('hidden', 'bg-rose-500/15', 'border-rose-500/40', 'text-rose-200', 'bg-emerald-500/15', 'border-emerald-500/40', 'text-emerald-200');
+        feedback.classList.add('border');
+        if (isError) {
+          feedback.classList.add('bg-rose-500/15', 'border-rose-500/40', 'text-rose-200');
+        } else {
+          feedback.classList.add('bg-emerald-500/15', 'border-emerald-500/40', 'text-emerald-200');
+        }
+      };
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nome = form.nome.value.trim();
+        const email = form.email.value.trim();
+        const assunto = form.assunto.value;
+        const mensagem = form.mensagem.value.trim();
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!nome || nome.length < 2) {
+          showFeedback('Por favor, informe seu nome antes de enviar.', true);
+          form.nome.focus();
+          return;
+        }
+
+        if (!email || !emailRegex.test(email)) {
+          showFeedback('Digite um endereço de e-mail válido para eu poder responder.', true);
+          form.email.focus();
+          return;
+        }
+
+        if (!mensagem || mensagem.length < 10) {
+          showFeedback('Escreva uma mensagem com pelo menos 10 caracteres.', true);
+          form.mensagem.focus();
+          return;
+        }
+
+        showFeedback(`Obrigada, ${nome}! Sua mensagem sobre "${assunto}" foi registrada por aqui. Em breve retorno pelo e-mail informado.`);
+        form.reset();
+      });
+    }
+
+    /**
+     * Desenha um retrato artístico estilizado de Stefany em estilo tech-neon no Canvas,
+     * sem depender de imagens externas.
+     */
+    function drawTechNeonPortrait() {
+      const canvas = document.getElementById('avatar-canvas');
+      if (!canvas || !canvas.getContext) return;
+
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // Fundo em gradiente escuro profundo
+      const bgGrad = ctx.createLinearGradient(0, 0, w, h);
+      bgGrad.addColorStop(0, '#0d0b1e');
+      bgGrad.addColorStop(0.55, '#15102d');
+      bgGrad.addColorStop(1, '#091624');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Círculo de aura neon atrás do retrato
+      const auraGrad = ctx.createRadialGradient(w * 0.5, h * 0.42, 18, w * 0.5, h * 0.42, 125);
+      auraGrad.addColorStop(0, 'rgba(168, 85, 247, 0.42)');
+      auraGrad.addColorStop(0.6, 'rgba(34, 211, 238, 0.18)');
+      auraGrad.addColorStop(1, 'rgba(9, 9, 15, 0)');
+      ctx.fillStyle = auraGrad;
+      ctx.beginPath();
+      ctx.arc(w * 0.5, h * 0.42, 125, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Linhas de circuito geométricas discretas
+      ctx.save();
+      ctx.strokeStyle = 'rgba(34, 211, 238, 0.22)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(28, 72);
+      ctx.lineTo(66, 72);
+      ctx.lineTo(86, 92);
+      ctx.moveTo(w - 28, 84);
+      ctx.lineTo(w - 68, 84);
+      ctx.lineTo(w - 88, 104);
+      ctx.stroke();
+
+      ctx.fillStyle = '#22d3ee';
+      ctx.beginPath();
+      ctx.arc(28, 72, 4, 0, Math.PI * 2);
+      ctx.arc(w - 28, 84, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // Cabelo de fundo estilizado com brilho roxo e rosa neon
+      const hairGrad = ctx.createLinearGradient(70, 55, 250, 220);
+      hairGrad.addColorStop(0, '#a855f7');
+      hairGrad.addColorStop(0.6, '#6d28d9');
+      hairGrad.addColorStop(1, '#ec4899');
+      ctx.fillStyle = hairGrad;
+      ctx.beginPath();
+      ctx.moveTo(86, 132);
+      ctx.quadraticCurveTo(82, 58, 160, 56);
+      ctx.quadraticCurveTo(238, 58, 234, 132);
+      ctx.lineTo(246, 218);
+      ctx.quadraticCurveTo(160, 205, 74, 218);
+      ctx.closePath();
+      ctx.fill();
+
+      // Ombrera / jaqueta tech com borda ciano e roxo
+      const jacketGrad = ctx.createLinearGradient(65, 215, 255, 320);
+      jacketGrad.addColorStop(0, '#1e1b4b');
+      jacketGrad.addColorStop(1, '#0f172a');
+      ctx.fillStyle = jacketGrad;
+      ctx.beginPath();
+      ctx.moveTo(52, 320);
+      ctx.quadraticCurveTo(66, 226, 160, 222);
+      ctx.quadraticCurveTo(254, 226, 268, 320);
+      ctx.closePath();
+      ctx.fill();
+
+      // Detalhe em V luminoso na gola
+      ctx.strokeStyle = '#22d3ee';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(126, 225);
+      ctx.lineTo(160, 276);
+      ctx.lineTo(194, 225);
+      ctx.stroke();
+
+      // Pescoço
+      ctx.fillStyle = '#e2a988';
+      ctx.fillRect(142, 186, 36, 44);
+
+      // Rosto estilizado
+      const skinGrad = ctx.createLinearGradient(105, 92, 215, 206);
+      skinGrad.addColorStop(0, '#f6c7ac');
+      skinGrad.addColorStop(1, '#dfa07d');
+      ctx.fillStyle = skinGrad;
+      ctx.beginPath();
+      ctx.moveTo(108, 126);
+      ctx.quadraticCurveTo(108, 84, 160, 84);
+      ctx.quadraticCurveTo(212, 84, 212, 126);
+      ctx.quadraticCurveTo(212, 178, 160, 200);
+      ctx.quadraticCurveTo(108, 178, 108, 126);
+      ctx.closePath();
+      ctx.fill();
+
+      // Franja frontal estilizada
+      ctx.fillStyle = '#9333ea';
+      ctx.beginPath();
+      ctx.moveTo(104, 122);
+      ctx.quadraticCurveTo(116, 76, 162, 78);
+      ctx.quadraticCurveTo(206, 80, 216, 122);
+      ctx.quadraticCurveTo(186, 104, 154, 118);
+      ctx.quadraticCurveTo(128, 106, 104, 122);
+      ctx.closePath();
+      ctx.fill();
+
+      // Sobrancelhas
+      ctx.strokeStyle = '#3b0764';
+      ctx.lineWidth = 3.5;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(124, 130);
+      ctx.quadraticCurveTo(136, 124, 148, 129);
+      ctx.moveTo(172, 129);
+      ctx.quadraticCurveTo(184, 124, 196, 130);
+      ctx.stroke();
+
+      // Olhos expressivos com brilho ciano/branco
+      ctx.fillStyle = '#181829';
+      ctx.beginPath();
+      ctx.arc(136, 142, 7.5, 0, Math.PI * 2);
+      ctx.arc(184, 142, 7.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = '#22d3ee';
+      ctx.beginPath();
+      ctx.arc(134.5, 140.5, 2.8, 0, Math.PI * 2);
+      ctx.arc(182.5, 140.5, 2.8, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Blush rosa suave
+      ctx.fillStyle = 'rgba(236, 72, 153, 0.28)';
+      ctx.beginPath();
+      ctx.ellipse(122, 156, 10, 5.5, 0, 0, Math.PI * 2);
+      ctx.ellipse(198, 156, 10, 5.5, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Sorriso acolhedor
+      ctx.strokeStyle = '#9d174d';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(160, 166, 13, 0.15 * Math.PI, 0.85 * Math.PI);
+      ctx.stroke();
+
+      // Fone / headset tech-neon discreto
+      ctx.strokeStyle = '#ec4899';
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.arc(160, 132, 62, Math.PI * 1.12, Math.PI * 1.88);
+      ctx.stroke();
+
+      ctx.fillStyle = '#ec4899';
+      ctx.fillRect(94, 128, 12, 26);
+      ctx.fillRect(214, 128, 12, 26);
+    }
+
+    /**
+     * Configura o envio de foto via input file com pré-visualização instantânea,
+     * persistência em localStorage e botão de restaurar o retrato tech-neon padrão.
+     */
+    function setupAvatarUploader() {
+      const STORAGE_KEY = 'stefany_custom_avatar_data_url';
+      const fileInput = document.getElementById('avatar-upload-input');
+      const resetBtn = document.getElementById('reset-avatar-btn');
+      const canvasEl = document.getElementById('avatar-canvas');
+      const imgEl = document.getElementById('custom-avatar-img');
+      const statusEl = document.getElementById('avatar-status-msg');
+
+      drawTechNeonPortrait();
+
+      if (!fileInput || !resetBtn || !canvasEl || !imgEl) return;
+
+      const showCustomImage = (dataUrl, labelMessage) => {
+        imgEl.onload = () => {
+          canvasEl.classList.add('hidden');
+          imgEl.classList.remove('hidden');
+          if (statusEl && labelMessage) {
+            statusEl.textContent = labelMessage;
+          }
+        };
+        imgEl.src = dataUrl;
+      };
+
+      // Restaura foto salva no localStorage, se existir
+      try {
+        const savedAvatar = localStorage.getItem(STORAGE_KEY);
+        if (savedAvatar && savedAvatar.startsWith('data:image/')) {
+          showCustomImage(savedAvatar, 'Foto personalizada carregada do armazenamento local.');
+        }
+      } catch (err) {
+        // Ignora bloqueios de storage e mantém o retrato padrão
+      }
+
+      fileInput.addEventListener('change', () => {
+        const file = fileInput.files && fileInput.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+          if (statusEl) {
+            statusEl.textContent = 'Selecione um arquivo de imagem válido (JPG, PNG, WEBP).';
+          }
+          fileInput.value = '';
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = typeof reader.result === 'string' ? reader.result : '';
+          if (!result) return;
+
+          try {
+            localStorage.setItem(STORAGE_KEY, result);
+          } catch (err) {
+            // Caso a imagem seja muito grande para o localStorage, ainda exibe a pré-visualização na sessão
+          }
+
+          showCustomImage(result, `Foto carregada: ${file.name}`);
+        };
+        reader.readAsDataURL(file);
+      });
+
+      resetBtn.addEventListener('click', () => {
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (err) {
+          // Ignora erro de acesso ao localStorage
+        }
+        fileInput.value = '';
+        imgEl.removeAttribute('src');
+        imgEl.classList.add('hidden');
+        canvasEl.classList.remove('hidden');
+        drawTechNeonPortrait();
+        if (statusEl) {
+          statusEl.textContent = 'Retrato tech-neon padrão restaurado.';
+        }
+      });
+    }
+
+    /**
+     * Anima a entrada suave das seções conforme a rolagem da página.
+     */
+    function setupScrollReveal() {
+      const elements = document.querySelectorAll('.reveal');
+      if (!elements.length) return;
+
+      if (!('IntersectionObserver' in window)) {
+        elements.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      elements.forEach((el) => observer.observe(el));
+    }
+
+    // Inicialização da página
+    document.addEventListener('DOMContentLoaded', () => {
+      setupAvatarUploader();
+      renderProjects('todos');
+      setupFilters();
+      setupMobileMenu();
+      setupCopyEmail();
+      setupContactForm();
+      setupScrollReveal();
+    });
+  </script>
+</body>
+</html>
